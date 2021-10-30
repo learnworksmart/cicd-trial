@@ -1,7 +1,7 @@
-name: Perform Security Scan
+name: Python Bandit Scan
 on: [pull_request]
 jobs:
-  security-scan:
+  bandit-security-scan:
     runs-on: ubuntu-latest
     # steps:
     # - uses: ShiftLeftSecurity/scan-action@master
