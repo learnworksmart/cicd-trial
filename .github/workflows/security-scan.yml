@@ -3,14 +3,20 @@ on: [pull_request]
 jobs:
   security-scan:
     runs-on: ubuntu-latest
-    steps:
-    - uses: ShiftLeftSecurity/scan-action@master
+    # steps:
+    # - uses: ShiftLeftSecurity/scan-action@master
+    #   with:
+    #     type: "credscan,depscan,python"
+    #   env:
+    #     WORKSPACE: https://github.com/${{ github.repository }}/${{ github.base_ref }}/${{ github.sha }}
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - uses: actions/upload-artifact@v1
+    #   with:
+    #     name: reports
+    #     path: reports
+
+    steps: 
+    - uses: jpetrucciani/bandit-check@master
       with:
-        type: "credscan,depscan,python"
-      env:
-        WORKSPACE: https://github.com/${{ github.repository }}/${{ github.base_ref }}/${{ github.sha }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - uses: actions/upload-artifact@v1
-      with:
-        name: reports
-        path: reports
+        path: '.'
+        bandit_flags: '-lll -o output.json -f json'
