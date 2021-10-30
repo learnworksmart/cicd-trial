@@ -23,5 +23,5 @@ jobs:
     - run: python test.py
     - run: echo $?
     - run: pip install bandit
-    - run: bandit test.py
+    - run: bandit -r .
     - run: echo $?
