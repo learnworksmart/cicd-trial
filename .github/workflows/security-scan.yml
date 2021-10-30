@@ -1,12 +1,12 @@
 name: Perform Security Scan
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   security-scan:
     runs-on: ubuntu-latest
     steps:
     - uses: ShiftLeftSecurity/scan-action@master
       with:
-        type: "credscan,depscan"
+        type: "credscan,depscan,python"
       env:
         WORKSPACE: https://github.com/${{ github.repository }}/${{ github.base_ref }}/${{ github.sha }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
