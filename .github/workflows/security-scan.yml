@@ -1,0 +1,27 @@
+name: Python Bandit Scan
+on: [pull_request]
+jobs:
+  bandit-security-scan:
+    runs-on: ubuntu-latest
+    # steps:
+    # - uses: ShiftLeftSecurity/scan-action@master
+    #   with:
+    #     type: "credscan,depscan,python"
+    #   env:
+    #     WORKSPACE: https://github.com/${{ github.repository }}/${{ github.base_ref }}/${{ github.sha }}
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - uses: actions/upload-artifact@v1
+    #   with:
+    #     name: reports
+    #     path: reports
+
+    steps: 
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9.0-beta.4'
+    - run: python test.py
+    - run: echo $?
+    - run: pip install bandit
+    - run: bandit -r .
+    - run: echo $?
