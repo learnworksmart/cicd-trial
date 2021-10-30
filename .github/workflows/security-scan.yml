@@ -19,4 +19,5 @@ jobs:
     - uses: jpetrucciani/bandit-check@master
       with:
         path: '.'
-        bandit_flags: '-lll -o output.json -f json'
+        # bandit_flags: '-lll -o output.json -f json'
+    - run: echo $?
