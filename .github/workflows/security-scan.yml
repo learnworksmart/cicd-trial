@@ -1,12 +1,16 @@
 name: Perform Security Scan
 on: [push]
 jobs:
-  check-bats-version:
+  security-scan:
     runs-on: ubuntu-latest
     steps:
     - uses: ShiftLeftSecurity/scan-action@master
       with:
         type: "credscan,depscan"
       env:
-        WORKSPACE: https://github.com/${{ github.repository }}/github-action/${{ github.sha }}
+        WORKSPACE: https://github.com/${{ github.repository }}/${{ github.base_ref }}/${{ github.sha }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: reports
+        path: reports
