@@ -1,5 +1,5 @@
 name: Perform Security Scan
-on: [push]
+on: [push, pull_request]
 jobs:
   security-scan:
     runs-on: ubuntu-latest
